@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <title>Bestevear</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+ 
+    </head>
+    <body>
+        <div class="container-lg" id="container" style="border: 2px; border-style: solid; margin: 20px;">
+            <form name="form1">
+                <div class="container-lg">
+                    
+                    <h1 class="text-center">Bestevear</h1>
+                    <h2 style="margin-left: -20px">Soort water</h2>
+                    <div class="checkboxes">
+
+                    <div>
+                        <input onchange="getlowest();" name="item" class="form-check-input" id="b1" type="radio" value="119000">
+                        <label for="b1" class="form-check-p">WNA, 119000</label>
+                    </div>
+                    <div>
+                        <input onchange="getlowest();" name="item" class="form-check-input" id="b2" type="radio" value="119500">
+                        <label for="b2" class="form-check-p">W, 119500</label>
+                    </div>
+                    <div>
+                        <input onchange="getlowest();" name="item" class="form-check-input" id="b3" type="radio" value="120000">
+                        <label for="b3" class="form-check-p">S, 120000</label>
+                    </div>
+                    <div>
+                        <input onchange="getlowest();" name="item" class="form-check-input" id="b4" type="radio" value="120500">
+                        <label for="b4" class="form-check-p">T, 120500</label>
+                    </div>
+                    <div>
+                        <input onchange="getlowest();" name="item" class="form-check-input" id="b5" type="radio" value="121000">
+                        <label for="b5" class="form-check-p">F, 121000</label>
+                    </div>
+                    <div>
+                        <input onchange="getlowest();" name="item" class="form-check-input" id="b6" type="radio" value="121500">
+                        <label for="b6" class="form-check-p">TF, 121500</label>
+                    </div>
+                        <input style="display:none ;" id="laagste" value="0" onchange="getlowest();"></input>
+                    </div> 
+                    <pre>   
+                    <div style="position: absolute; margin-top: -150px; width: 100px; margin-left: 330px;" class="container-lg text-center">
+                        <label>Resultaat:</label>  <label id="rton"></label>     <label id="rvolume"></label>
+                    </div>
+                </pre> 
+                    <div style="margin-right: 100px;">
+                        <div style="float: left;">
+                            <br><br>
+                            Gebruikte tonnage &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="gebruiktton" type="number" value="0" required> ton<br><br>
+                            Aangeboden tonnage &nbsp; <input id="aangebodenton" type="number" value="0" required> ton<br><br>
+                        </div>
+                        <div style="float: right;">
+                            Maximaal volume &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="mvolume" type="number" value="180000" disabled> kubieke meter<br><br>
+                            Gebruikte laadruimte &nbsp; <input id="gebruiktvolume" type="number" value="0" required> kubieke meter<br><br>
+                            Aangeboden volume &nbsp; <input id="aangebodenvolume" type="number" value="0" required> kubieke meter<br><br>
+                                                    </div>
+                                                </div>
+                             
+                                            </div>
+                                        </form><br><br><br><br><br><br><br><br>
+                                        <div class="container-lg text-center">
+                                            <button onclick="check()">Controleer</button>
+                                            
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function check() {
+                                            var gebruiktton = document.getElementById("gebruiktton").value;
+                                            console.log(gebruiktton);
+                             
+                                            var aangebodenton = document.getElementById("aangebodenton").value;
+                                            console.log(aangebodenton);
+                             
+                                            if( +gebruiktton + +aangebodenton > document.getElementById("laagste").getAttribute("value")){
+                                                //alert("teveel tonnage");
+                                                document.getElementById("rton").innerHTML = "teveel tonnage";
+                                                document.getElementById("rton").style.color = "Red";
+                                            }
+                                            else{
+                                                //alert("tonnage ok");
+                                                document.getElementById("rton").innerHTML = "tonnage ok";
+                                                document.getElementById("rton").style.color = "green";
+                                            }
+                                            vlume();
+                                        }
+                                        function vlume() {
+                                            var gebruiktvolume = document.getElementById("gebruiktvolume").value;
+                                            console.log(gebruiktvolume);
+                             
+                                            var aangebodenvolume = document.getElementById("aangebodenvolume").value;
+                                            console.log(aangebodenvolume);
+                             
+                                            if( +gebruiktvolume + +aangebodenvolume > 180000 ){
+                                                //alert("teveel volume");
+                                                document.getElementById("rvolume").innerHTML = "teveel volume";
+                                                document.getElementById("rvolume").style.color = "Red";
+                                            }
+                                            else{
+                                                //alert("volume ok");
+                                                document.getElementById("rvolume").innerHTML = "volume ok";
+                                                document.getElementById("rvolume").style.color = "green";
+                                            }
+                                        }
+
+                                        function getlowest() {
+                                            
+                                        let checkedValues = Array.from(document.form1.item).filter(i=>i.checked).map(i=>+i.value);
+                                        let total = checkedValues.length === 0 ? 0 : checkedValues.reduce((a, b) =>a+b);
+                                        if (checkedValues.length >= 1) {
+                                        let min = Math.min.apply(Math, checkedValues);
+                                        document.getElementById("laagste").setAttribute("value", min.toFixed(0));
+                                        }
+                                    }
+                                    </script>
+        </body>
+</html>
+                            
+                            
